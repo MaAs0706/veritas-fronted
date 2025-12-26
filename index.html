@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veritas | AI-Powered Fake News Detection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+        <div class="bg-circle bg-circle-3"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="logo-text">VERITAS</span>
+                    <span class="logo-sub">AI</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link active">Detector</a>
+                    <a href="#" class="nav-link">How It Works</a>
+                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">API</a>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-user-circle"></i> Sign In
+                    </button>
+                </div>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="tagline">
+                        <span class="tagline-chip">AI-POWERED</span>
+                        <h1 class="hero-title">Fake News Detection System</h1>
+                        <p class="hero-subtitle">
+                            Advanced NLP analysis to identify misinformation with explainable AI insights.
+                            Powered by fine-tuned transformer models.
+                        </p>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">98.7%</div>
+                            <div class="stat-label">Accuracy</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">2.3M</div>
+                            <div class="stat-label">Articles Analyzed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">0.4s</div>
+                            <div class="stat-label">Avg. Response</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detection Interface -->
+            <section class="detection-interface">
+                <div class="interface-container">
+                    <div class="interface-header">
+                        <h2><i class="fas fa-search"></i> News Authenticity Analyzer</h2>
+                        <div class="mode-switcher">
+                            <button class="mode-btn active" data-mode="text">
+                                <i class="fas fa-font"></i> Text Analysis
+                            </button>
+                            <button class="mode-btn" data-mode="url">
+                                <i class="fas fa-link"></i> URL Analysis
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="input-area active" id="text-input">
+                        <div class="input-header">
+                            <h3><i class="fas fa-newspaper"></i> Enter News Content</h3>
+                            <div class="input-actions">
+                                <button class="action-btn" id="sample-btn">
+                                    <i class="fas fa-vial"></i> Load Sample
+                                </button>
+                                <button class="action-btn" id="clear-btn">
+                                    <i class="fas fa-eraser"></i> Clear
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-input-container">
+                            <textarea 
+                                id="news-text" 
+                                class="news-textarea" 
+                                placeholder="Paste news article text here for analysis... (Minimum 50 characters for accurate detection)"
+                                rows="8"
+                            ></textarea>
+                            <div class="char-count">
+                                <span id="char-counter">0</span> characters
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-area" id="url-input">
+                        <div class="input-header">
+                            <h3><i class="fas fa-globe"></i> Enter Article URL</h3>
+                        </div>
+                        <div class="url-input-container">
+                            <div class="url-input-group">
+                                <i class="fas fa-link url-icon"></i>
+                                <input 
+                                    type="url" 
+                                    id="news-url" 
+                                    class="url-input" 
+                                    placeholder="https://example.com/news-article"
+                                >
+                                <button class="btn btn-primary" id="fetch-btn">
+                                    <i class="fas fa-cloud-download-alt"></i> Fetch & Analyze
+                                </button>
+                            </div>
+                            <p class="url-note">
+                                Supports most news websites. The system will extract and analyze the main article content.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="analysis-controls">
+                        <div class="model-selector">
+                            <label for="model-select"><i class="fas fa-brain"></i> Analysis Model:</label>
+                            <select id="model-select" class="model-select">
+                                <option value="roberta">RoBERTa (Recommended)</option>
+                                <option value="bert">BERT Base</option>
+                                <option value="distilbert">DistilBERT (Fast)</option>
+                                <option value="ensemble">Ensemble (All Models)</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary btn-lg btn-analyze" id="analyze-btn">
+                            <i class="fas fa-play-circle"></i> Analyze Authenticity
+                            <span class="pulse-dot"></span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <div class="results-container">
+                    <div class="results-header">
+                        <h2><i class="fas fa-chart-bar"></i> Analysis Results</h2>
+                        <div class="results-status" id="results-status">
+                            <i class="fas fa-hourglass-half"></i> Ready for analysis
+                        </div>
+                    </div>
+
+                    <!-- Results will be dynamically inserted here -->
+                    <div class="results-placeholder" id="results-placeholder">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Analysis Results Will Appear Here</h3>
+                        <p>Submit a news article or URL to see detailed authenticity analysis, confidence scores, and explainable AI insights.</p>
+                    </div>
+
+                    <!-- Results template (hidden by default) -->
+                    <div class="results-content hidden" id="results-content">
+                        <div class="confidence-display">
+                            <div class="confidence-score">
+                                <div class="score-circle">
+                                    <svg class="score-progress" viewBox="0 0 36 36">
+                                        <path class="score-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                        <path class="score-circle-fill" stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                    </svg>
+                                    <div class="score-value">
+                                        <span class="score-number">85</span>
+                                        <span class="score-percent">%</span>
+                                    </div>
+                                </div>
+                                <div class="score-label">
+                                    <h3>Confidence Score</h3>
+                                    <p class="score-verdict">LIKELY REAL</p>
+                                </div>
+                            </div>
+                            <div class="verdict-card">
+                                <div class="verdict-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="verdict-details">
+                                    <h3>Verdict: <span class="verdict-text">REAL</span></h3>
+                                    <p class="verdict-description">This content shows strong indicators of credibility with minimal misinformation signals.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="explainability-section">
+                            <h3><i class="fas fa-code-branch"></i> Explainability Insights</h3>
+                            <div class="insights-container">
+                                <div class="insight positive">
+                                    <div class="insight-header">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <span>Credibility Indicators</span>
+                                    </div>
+                                    <div class="insight-tags">
+                                        <span class="insight-tag">Verified Sources</span>
+                                        <span class="insight-tag">Neutral Language</span>
+                                        <span class="insight-tag">Factual Claims</span>
+                                        <span class="insight-tag">Author Credentials</span>
+                                    </div>
+                                </div>
+                                <div class="insight negative">
+                                    <div class="insight-header">
+                                        <i class="fas fa-minus-circle"></i>
+                                        <span>Warning Signals</span>
+                                    </div>
+                                    <div class="insight-tags">
+                                        <span class="insight-tag">Emotional Language</span>
+                                        <span class="insight-tag">Unverified Claims</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="highlighted-text">
+                                <h4>Key Phrases Analysis</h4>
+                                <div class="text-highlights">
+                                    <p>
+                                        The <span class="highlight credible">government announced</span> new measures to address climate change based on 
+                                        <span class="highlight credible">scientific consensus</span>. However, some critics argue the policies 
+                                        <span class="highlight misleading">don't go far enough</span> and claim the administration is 
+                                        <span class="highlight biased">influenced by corporate interests</span>.
+                                    </p>
+                                </div>
+                                <div class="highlight-legend">
+                                    <div class="legend-item">
+                                        <span class="legend-color credible"></span>
+                                        <span>Credible Language</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color misleading"></span>
+                                        <span>Potentially Misleading</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color biased"></span>
+                                        <span>Biased Language</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="model-details">
+                            <h3><i class="fas fa-microchip"></i> Model Analysis Details</h3>
+                            <div class="model-cards">
+                                <div class="model-card">
+                                    <div class="model-card-header">
+                                        <i class="fas fa-robot"></i>
+                                        <h4>RoBERTa Model</h4>
+                                    </div>
+                                    <div class="model-card-body">
+                                        <div class="model-prediction">
+                                            <span class="prediction-label">Prediction:</span>
+                                            <span class="prediction-value real">Real (87%)</span>
+                                        </div>
+                                        <div class="model-prediction">
+                                            <span class="prediction-label">Confidence:</span>
+                                            <span class="prediction-value">High</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="model-card">
+                                    <div class="model-card-header">
+                                        <i class="fas fa-bolt"></i>
+                                        <h4>BERT Model</h4>
+                                    </div>
+                                    <div class="model-card-body">
+                                        <div class="model-prediction">
+                                            <span class="prediction-label">Prediction:</span>
+                                            <span class="prediction-value real">Real (82%)</span>
+                                        </div>
+                                        <div class="model-prediction">
+                                            <span class="prediction-label">Confidence:</span>
+                                            <span class="prediction-value">Medium</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="model-card">
+                                    <div class="model-card-header">
+                                        <i class="fas fa-tachometer-alt"></i>
+                                        <h4>Ensemble Result</h4>
+                                    </div>
+                                    <div class="model-card-body">
+                                        <div class="model-prediction">
+                                            <span class="prediction-label">Final Verdict:</span>
+                                            <span class="prediction-value real">Real (85%)</span>
+                                        </div>
+                                        <div class="model-prediction">
+                                            <span class="prediction-label">Agreement:</span>
+                                            <span class="prediction-value">Full</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="results-actions">
+                            <button class="btn btn-outline">
+                                <i class="fas fa-download"></i> Export Report
+                            </button>
+                            <button class="btn btn-primary" id="new-analysis-btn">
+                                <i class="fas fa-redo"></i> New Analysis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Searches -->
+            <section class="recent-searches">
+                <div class="recent-container">
+                    <h2><i class="fas fa-history"></i> Recent Analyses</h2>
+                    <div class="recent-list">
+                        <div class="recent-item">
+                            <div class="recent-item-header">
+                                <span class="recent-title">Climate Policy Announcement</span>
+                                <span class="recent-date">Today, 14:32</span>
+                            </div>
+                            <div class="recent-item-details">
+                                <span class="recent-verdict real">Real (85%)</span>
+                                <span class="recent-model">RoBERTa</span>
+                            </div>
+                        </div>
+                        <div class="recent-item">
+                            <div class="recent-item-header">
+                                <span class="recent-title">Celebrity Health Scare Report</span>
+                                <span class="recent-date">Yesterday, 09:15</span>
+                            </div>
+                            <div class="recent-item-details">
+                                <span class="recent-verdict fake">Fake (92%)</span>
+                                <span class="recent-model">Ensemble</span>
+                            </div>
+                        </div>
+                        <div class="recent-item">
+                            <div class="recent-item-header">
+                                <span class="recent-title">Stock Market Prediction</span>
+                                <span class="recent-date">Dec 22, 2025</span>
+                            </div>
+                            <div class="recent-item-details">
+                                <span class="recent-verdict misleading">Misleading (67%)</span>
+                                <span class="recent-model">BERT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- References / Data Sources -->
+            <section class="references">
+                <div class="references-container">
+                    <h2><i class="fas fa-database"></i> Training Data & References</h2>
+                    <div class="datasets-grid">
+                        <div class="dataset-card">
+                            <div class="dataset-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h4>LIAR Dataset</h4>
+                            <p>12.8K labeled short statements for fake news detection</p>
+                        </div>
+                        <div class="dataset-card">
+                            <div class="dataset-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h4>FakeNewsNet</h4>
+                            <p>Comprehensive dataset with content, social context & spatiotemporal information</p>
+                        </div>
+                        <div class="dataset-card">
+                            <div class="dataset-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Kaggle Dataset</h4>
+                            <p>Large collection of news articles labeled as real or fake</p>
+                        </div>
+                        <div class="dataset-card">
+                            <div class="dataset-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h4>Custom Fine-tuning</h4>
+                            <p>Proprietary datasets for enhanced contextual understanding</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="logo-text">VERITAS</span>
+                    </div>
+                    <p class="footer-tagline">Advanced AI for Truth Verification</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-paper-plane"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="#">Detection API</a>
+                        <a href="#">Browser Extension</a>
+                        <a href="#">Enterprise Solutions</a>
+                        <a href="#">Pricing</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="#">Documentation</a>
+                        <a href="#">Research Papers</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Help Center</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Veritas AI. All rights reserved. This is a demonstration interface for a fake news detection system.</p>
+                <div class="tech-badges">
+                    <span class="tech-badge"><i class="fab fa-python"></i> Transformers</span>
+                    <span class="tech-badge"><i class="fas fa-brain"></i> BERT/RoBERTa</span>
+                    <span class="tech-badge"><i class="fas fa-chart-network"></i> NLP</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
