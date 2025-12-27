@@ -1131,3 +1131,509 @@ circle-img {
     border-radius: 50%;
     object-fit: cover;
 }
+/* ===== SCROLL ANIMATIONS ===== */
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+/* Parallax effect for background */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.3;
+    animation: float 20s infinite ease-in-out;
+}
+
+.bg-circle-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--primary), transparent 70%);
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.bg-circle-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--secondary), transparent 70%);
+    top: 60%;
+    right: 15%;
+    animation-delay: -5s;
+}
+
+.bg-circle-3 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent), transparent 70%);
+    bottom: 10%;
+    left: 30%;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-30px) rotate(120deg);
+    }
+    66% {
+        transform: translateY(30px) rotate(240deg);
+    }
+}
+
+.bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(50px);
+    }
+}
+
+/* Fade-in animations for content */
+[data-scroll] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--transition-normal), 
+                transform 0.8s var(--transition-normal);
+}
+
+[data-scroll].visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animations for grid items */
+[data-scroll-stagger] > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--transition-normal), 
+                transform 0.6s var(--transition-normal);
+}
+
+[data-scroll-stagger].visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-scroll-stagger].visible > *:nth-child(1) { transition-delay: 0.1s; }
+[data-scroll-stagger].visible > *:nth-child(2) { transition-delay: 0.2s; }
+[data-scroll-stagger].visible > *:nth-child(3) { transition-delay: 0.3s; }
+[data-scroll-stagger].visible > *:nth-child(4) { transition-delay: 0.4s; }
+[data-scroll-stagger].visible > *:nth-child(5) { transition-delay: 0.5s; }
+[data-scroll-stagger].visible > *:nth-child(6) { transition-delay: 0.6s; }
+
+/* Scale-in animations */
+[data-scroll-scale] {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.8s var(--transition-normal), 
+                transform 0.8s var(--transition-normal);
+}
+
+[data-scroll-scale].visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Slide-in from left */
+[data-scroll-left] {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s var(--transition-normal), 
+                transform 0.8s var(--transition-normal);
+}
+
+[data-scroll-left].visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Slide-in from right */
+[data-scroll-right] {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s var(--transition-normal), 
+                transform 0.8s var(--transition-normal);
+}
+
+[data-scroll-right].visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Rotate-in animations */
+[data-scroll-rotate] {
+    opacity: 0;
+    transform: rotate(-10deg);
+    transition: opacity 0.8s var(--transition-normal), 
+                transform 0.8s var(--transition-normal);
+}
+
+[data-scroll-rotate].visible {
+    opacity: 1;
+    transform: rotate(0);
+}
+
+/* Blur-in animations */
+[data-scroll-blur] {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+    transition: opacity 0.8s var(--transition-normal), 
+                filter 0.8s var(--transition-normal),
+                transform 0.8s var(--transition-normal);
+}
+
+[data-scroll-blur].visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* ===== ENHANCED SECTION ANIMATIONS ===== */
+
+/* Hero section specific */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        rgba(99, 102, 241, 0.1) 0%, 
+        rgba(16, 185, 129, 0.05) 50%, 
+        rgba(245, 158, 11, 0.1) 100%);
+    animation: heroGradient 10s ease infinite;
+    background-size: 400% 400%;
+    z-index: -1;
+}
+
+@keyframes heroGradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Floating elements in hero */
+.hero-title {
+    animation: floatTitle 3s ease-in-out infinite;
+}
+
+@keyframes floatTitle {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Timeline animation */
+.timeline-item {
+    transition: transform var(--transition-normal);
+}
+
+.timeline-item:hover {
+    transform: translateX(10px);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 50%;
+    border: 3px solid var(--bg-primary);
+    z-index: 1;
+    transition: all var(--transition-normal);
+}
+
+.timeline-item:hover::before {
+    background: var(--secondary);
+    transform: scale(1.5);
+    box-shadow: 0 0 20px var(--primary);
+}
+
+/* Team member enhanced animations */
+.team-member {
+    position: relative;
+    overflow: hidden;
+}
+
+.team-member::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(99, 102, 241, 0.1) 50%, 
+        transparent 70%);
+    transform: rotate(45deg);
+    transition: transform 0.6s var(--transition-normal);
+    z-index: 0;
+}
+
+.team-member:hover::after {
+    transform: rotate(45deg) translate(20%, 20%);
+}
+
+.team-member > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Value cards shine effect */
+.value-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent);
+    transition: left 0.6s var(--transition-normal);
+}
+
+.value-card:hover::before {
+    left: 100%;
+}
+
+/* Process steps connector animation */
+.steps-timeline::before {
+    height: 0;
+    transition: height 1.5s var(--transition-normal);
+}
+
+.steps-timeline.visible::before {
+    height: 100%;
+}
+
+/* Step number pulse animation */
+.step-number {
+    animation: stepPulse 2s infinite;
+}
+
+@keyframes stepPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(99, 102, 241, 0);
+    }
+}
+
+/* FAQ expansion animation */
+.faq-question {
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-question::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--transition-normal);
+}
+
+.faq-item:hover .faq-question::after {
+    transform: scaleX(1);
+}
+
+/* CTA section glow animation */
+.cta-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(99, 102, 241, 0.1) 60deg,
+        rgba(16, 185, 129, 0.1) 120deg,
+        rgba(245, 158, 11, 0.1) 180deg,
+        rgba(99, 102, 241, 0.1) 240deg,
+        transparent 300deg
+    );
+    animation: rotate 10s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.cta-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Progress bar for reading */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 1000;
+}
+
+/* Parallax effect for mission visual */
+.mission-visual {
+    animation: rotate3D 20s infinite linear;
+    transform-style: preserve-3d;
+}
+
+@keyframes rotate3D {
+    0% {
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+    100% {
+        transform: rotateY(360deg) rotateX(360deg);
+    }
+}
+
+/* Text reveal animation */
+.reveal-text {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.reveal-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s var(--transition-normal);
+}
+
+.reveal-text.visible::after {
+    transform: scaleX(1);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--bg-card);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all var(--transition-normal);
+    z-index: 100;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-indicator:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+.scroll-indicator i {
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+}
